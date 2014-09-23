@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Give+You+Glory|Dancing+Script|Satisfy|Kranky|Mountains+of+Christmas|Miltonian+Tattoo);
+
 // http://clrs.cc/
 
 @NAVY:    #001F3F;
@@ -18,10 +20,31 @@
 @SILVER:  #DDDDDD;
 
 body{
-  background-color: @YELLOW;
+  background-color: @SILVER;
+  font-family: 'Give You Glory', cursive;
+  //font-family: 'Dancing Script', cursive;
+  //font-family: 'Satisfy', cursive;
+  font-size: 25px;
+  background-image: url('/img/feet.jpg');
+  background-size: cover;
+}
+p{
+  text-align: left;
+  margin: 50px 850px 0px 0px;
+  font-size: 20px;
 }
 
 input.ng-invalid, select.ng-invalid{
-  background-color: @RED;
+  background-color: @GRAY;
 }
-
+.navbar > .container .navbar-brand{
+  font-size: 35px;
+  font-family: 'Miltonian Tattoo', cursive;
+}
+.navbar-default .navbar-nav > li > a{
+  font-family: 'Miltonian Tattoo', cursive;
+ }
+img{
+  height: 55px;
+  width: 55px;
+}
