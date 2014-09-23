@@ -1,0 +1,54 @@
+
+
+.row
+  .col-xs-3
+    form(role='form', novalidate, name='addChildForm', ng-show='showChild')
+      .form-group
+        label(for='name') Baby's Name
+        input.form-control#name(type='text', name='name', ng-model='child.name', autofocus, required)
+      .form-group
+        label(for='dob') Date of Birth
+        input.form-control#dob(type='date', name='dob', ng-model='child.dob')
+      .form-group
+        label(for='tob') Time of Birth
+        input.form-control#tob(type='time', name='tob', ng-model='child.tob')
+      .form-group
+        label Weight at Birth
+        br
+      .form-group
+        label(for='pab') lbs
+        input.form-control#pab(type='number', name='pab', ng-model='child.pab')
+      .form-group
+        label(for='oab') ounces
+        input.form-control#oab(type='number', name='oab', ng-model='child.oab')
+      .form-group
+        label(for='lab') Length at Birth
+        input.form-control#lab(type='number', name='lab', ng-model='child.lab')
+      .form-group
+        label(for='moments') Special Moments
+        input.form-control#moments(type='textarea', name='moments', ng-model='child.moments')
+      button.btn.btn-primary(ng-show='addChildForm.$valid', ng-click='add()') add child
+  .col-xs-9
+.row
+  .col-xs-3.col-xs-offset-9
+    button.btn(ng-click='toggleAdd()', ng-hide='showChild') Add Child
+.row
+  .col-xs-12
+    .panel.panel-default(ng-hide='hidePanel')
+      .panel-body
+        table.table.table-bordered.table-hover
+          thead
+            th Child's Name
+            th Date of Birth
+            th Time of Birth
+            th Weight at Birth
+            th Length at Birth
+            th Special Moments
+              tbody
+                tr(ng-repeat='c in children')
+                  td: a(href='/#/children/(c._id)') {{c.name}}
+                  td {{c.dob | date:'mediumDate'}}
+                  td {{c.tob | date:'shortTime'}}
+                  td {{c.pab}} lbs, {{c.oab}} oz
+                  td {{c.lab}} inches
+                  td {{c.moments}}

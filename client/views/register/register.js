@@ -7,7 +7,7 @@
 
     function success(response){
       toastr.success('User successfully registered.');
-      $location.path('/login');
+      $location.path('/profile');
     }
 
     function failure(response){
