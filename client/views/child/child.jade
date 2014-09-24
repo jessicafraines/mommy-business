@@ -35,6 +35,7 @@ h3 {{child.name}}
   .col-xs-12
     .panel.panel-default(ng-hide='hidePanel')
       .panel-body
+        h5 Growth Chart
         table.table.table-bordered.table-hover
           thead
             th Date
@@ -44,8 +45,8 @@ h3 {{child.name}}
               tbody
                 tr
                   td {{child.date | date:'mediumDate'}}
-                  td {{child.feet}} ', {{child.inches}} "
-                  td {{child.pounds}} lbs, {{child.ounces}} oz
+                  td {{child.pounds || 0}} lbs, {{child.ounces}} oz
+                  td {{child.feet || 0}} ft, {{child.inches}} in
                   td {{child.head}} "
 
 .row
