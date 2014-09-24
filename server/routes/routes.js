@@ -8,7 +8,7 @@ var morgan         = require('morgan'),
     debug          = require('../lib/debug'),
     security       = require('../lib/security'),
     home           = require('../controllers/home'),
-    child           = require('../controllers/child'),
+    children       = require('../controllers/children'),
     users          = require('../controllers/users');
 
 module.exports = function(app, express){
@@ -25,8 +25,10 @@ module.exports = function(app, express){
   app.get('/home', home.index);
   app.post('/register', users.register);
   app.post('/login', users.login);
-  app.post('/children', child.create);
-  app.get('/children', child.index);
+  app.post('/children', children.create);
+  app.get('/children', children.index);
+  app.post('/child/:id', children.update);
+  app.get('/child/:childId', children.show);
 
   app.use(security.bounce);
   app.delete('/logout', users.logout);

@@ -1,5 +1,3 @@
-
-
 .row
   .col-xs-3
     form(role='form', novalidate, name='addChildForm', ng-show='showChild')
@@ -24,9 +22,6 @@
       .form-group
         label(for='lab') Length at Birth
         input.form-control#lab(type='number', name='lab', ng-model='child.lab')
-      .form-group
-        label(for='moments') Special Moments
-        input.form-control#moments(type='textarea', name='moments', ng-model='child.moments')
       button.btn.btn-primary(ng-show='addChildForm.$valid', ng-click='add()') add child
   .col-xs-9
 .row
@@ -43,12 +38,10 @@
             th Time of Birth
             th Weight at Birth
             th Length at Birth
-            th Special Moments
               tbody
                 tr(ng-repeat='c in children')
-                  td: a(href='/#/children/(c._id)') {{c.name}}
+                  td: a(href='/#/child/{{c._id}}') {{c.name}}
                   td {{c.dob | date:'mediumDate'}}
                   td {{c.tob | date:'shortTime'}}
                   td {{c.pab}} lbs, {{c.oab}} oz
                   td {{c.lab}} inches
-                  td {{c.moments}}

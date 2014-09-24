@@ -1,0 +1,53 @@
+h3 {{child.name}}
+.row
+  .col-xs-6
+    form(novalidate, name='childForm', role='form', ng-show='showChild')
+      .row
+        .col-xs-6
+          h4 Growth Chart
+          .form-group
+            label(for='date') Date
+            input.form-control#date(name='date', type='date', ng-model='child.date', autofocus)
+          .form-group
+            label Height
+            br
+          .form-group
+            label(for='feet') Feet
+            input.form-control#feet(name='feet', type='number', ng-model='child.feet', autofocus)
+          .form-group
+            label(for='inches') Inches
+            input.form-control#inches(name='inches', type='number', ng-model='child.inches', autofocus)
+          .form-group
+            label Weight
+            br
+          .form-group
+            label(for='pounds') lbs
+            input.form-control#pounds(type='number', name='pounds', ng-model='child.pounds')
+          .form-group
+            label(for='ounces') ounces
+            input.form-control#ounces(type='number', name='ounces', ng-model='child.ounces')
+          .form-group
+            label(for='head') Head Circumference
+            input.form-control#head(type='number', name='head', ng-model='child.head')
+          button.btn#update(ng-click='updateChild()') Add Growth
+
+.row
+  .col-xs-12
+    .panel.panel-default(ng-hide='hidePanel')
+      .panel-body
+        table.table.table-bordered.table-hover
+          thead
+            th Date
+            th Weight
+            th Length
+            th Head
+              tbody
+                tr
+                  td {{child.date | date:'mediumDate'}}
+                  td {{child.feet}} ', {{child.inches}} "
+                  td {{child.pounds}} lbs, {{child.ounces}} oz
+                  td {{child.head}} "
+
+.row
+  .col-xs-3.col-xs-offset-9
+    button.btn(ng-click='toggleChild()', ng-hide='showChild') Edit Growth Chart

@@ -3,9 +3,22 @@
 var Child = require('../models/child');
    // Mongo   = require('mongodb');
 
+exports.update = function(req, res){
+  Child.findById(req.params.id, function(err, child){
+    child.save(req.body, function(err, child){
+      res.send({child:child});
+    });
+  });
+};
+
+exports.show = function(req, res){
+  Child.findById(req.params.childId, function(err, child){
+    console.log('!!!!!!!', child);
+    res.send({child:child});
+  });
+};
+
 exports.create = function(req, res){
-  console.log('RUI', req.user._id);
-  console.log('RDB', req.body);
   Child.create(req.user._id, req.body, function(err, child){
     res.send({child:child});
   });
