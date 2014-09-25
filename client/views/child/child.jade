@@ -1,38 +1,6 @@
 h3 {{child.name}}
 
 .row
-  .col-xs-6
-    form(novalidate, name='growthForm', role='form', ng-show='showGrowth')
-      .row
-        .col-xs-6
-          h4 Growth Chart
-          .form-group
-            label(for='date') Date
-            input.form-control#date(name='date', type='date', ng-model='growth.date', autofocus)
-          .form-group
-            label Height
-            br
-          .form-group
-            label(for='feet') Feet
-            input.form-control#feet(name='feet', type='number', ng-model='growth.feet', autofocus)
-          .form-group
-            label(for='inches') Inches
-            input.form-control#inches(name='inches', type='number', ng-model='growth.inches', autofocus)
-          .form-group
-            label Weight
-            br
-          .form-group
-            label(for='pounds') lbs
-            input.form-control#pounds(type='number', name='pounds', ng-model='growth.pounds')
-          .form-group
-            label(for='ounces') ounces
-            input.form-control#ounces(type='number', name='ounces', ng-model='growth.ounces')
-          .form-group
-            label(for='head') Head Circumference
-            input.form-control#head(type='number', name='head', ng-model='growth.head')
-          button.btn#update(ng-click='addGrowth()') Add Growth
-
-.row
   .col-xs-12
     .panel.panel-default
       .panel-body
@@ -52,7 +20,8 @@ h3 {{child.name}}
 
 .row
   .col-xs-3.col-xs-offset-9
-    button.btn(ng-click='toggleGrowth()', ng-hide='showGrowth') Add to Growth Chart
+    button.btn(ng-click='toggleGrowth()', data-toggle='modal', data-target='#growth') Add to Growth Chart
+    include growth
 
 .row
   .col-xs-6
