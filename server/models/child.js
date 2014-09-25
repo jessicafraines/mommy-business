@@ -4,19 +4,16 @@ var Mongo  = require('mongodb'),
     _      = require('underscore');
 
 function Child(mommyId,o){
-  this.mommyId  = Mongo.ObjectID(mommyId);
-  this.name     = o.name;
-  this.dob      = (o.dob) ? (new Date(o.dob)) : '';
-  this.tob      = o.tob;
-  this.pab      = o.pab * 1;
-  this.oab      = o.oab * 1;
-  this.lab      = o.lab * 1;
-  this.date     = (o.date) ? (new Date(o.date)) : '';
-  this.pounds   = o.pounds * 1;
-  this.ounces   = o.ounces * 1;
-  this.head     = o.head * 1;
-  this.feet     = o.feet * 1;
-  this.inches   = o.inches * 1;
+  this.mommyId    = Mongo.ObjectID(mommyId);
+  this.name       = o.name;
+  this.dob        = (o.dob) ? (new Date(o.dob)) : '';
+  this.tob        = o.tob;
+  this.pab        = o.pab * 1;
+  this.oab        = o.oab * 1;
+  this.lab        = o.lab * 1;
+  this.growth     = [];
+  this.milestones = [];
+  this.appts      = [];
 }
 
 Object.defineProperty(Child, 'collection',{
@@ -24,11 +21,16 @@ Object.defineProperty(Child, 'collection',{
 });
 
 Child.create = function(user, o, cb){
-  console.log('USER', user);
-  console.log('O', o);
   var c = new Child(user, o);
-  console.log('C', c);
   Child.collection.save(c, cb);
+};
+
+Child.update = function(child, cb){
+  child._id = Mongo.ObjectID(child._id);
+  console.log('CHILD', child);
+  child.mommyId = Mongo.ObjectID(child.mommyId);
+  child.dob = (child.dob) ? (new Date(child.dob)) : '';
+  Child.collection.save(child, cb);
 };
 
 Child.findChild = function(userId, cb){
@@ -48,10 +50,7 @@ Child.findById = function(id, cb){
   });
 };
 
-/*Child.prototype.save = function(cb){
-  Child.collection.save(cb);
-};*/
-Child.prototype.save = function(fields, cb){
+/*Child.prototype.save = function(fields, cb){
   var properties = Object.keys(fields),
     self       = this;
 
@@ -68,6 +67,6 @@ Child.prototype.save = function(fields, cb){
   this._id      = Mongo.ObjectID(this._id);
   this.mommyId  = Mongo.ObjectID(this.mommyId);
   Child.collection.save(this, cb);
-};
+};*/
 module.exports = Child;
 

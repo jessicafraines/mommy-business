@@ -27,7 +27,7 @@ module.exports = function(app, express){
   app.post('/login', users.login);
   app.post('/children', children.create);
   app.get('/children', children.index);
-  app.post('/child/:id', children.update);
+  app.post('/child/update', children.update);
   app.get('/child/:childId', children.show);
 
   app.use(security.bounce);

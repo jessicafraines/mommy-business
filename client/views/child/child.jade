@@ -1,39 +1,40 @@
 h3 {{child.name}}
+
 .row
   .col-xs-6
-    form(novalidate, name='childForm', role='form', ng-show='showChild')
+    form(novalidate, name='growthForm', role='form', ng-show='showGrowth')
       .row
         .col-xs-6
           h4 Growth Chart
           .form-group
             label(for='date') Date
-            input.form-control#date(name='date', type='date', ng-model='child.date', autofocus)
+            input.form-control#date(name='date', type='date', ng-model='growth.date', autofocus)
           .form-group
             label Height
             br
           .form-group
             label(for='feet') Feet
-            input.form-control#feet(name='feet', type='number', ng-model='child.feet', autofocus)
+            input.form-control#feet(name='feet', type='number', ng-model='growth.feet', autofocus)
           .form-group
             label(for='inches') Inches
-            input.form-control#inches(name='inches', type='number', ng-model='child.inches', autofocus)
+            input.form-control#inches(name='inches', type='number', ng-model='growth.inches', autofocus)
           .form-group
             label Weight
             br
           .form-group
             label(for='pounds') lbs
-            input.form-control#pounds(type='number', name='pounds', ng-model='child.pounds')
+            input.form-control#pounds(type='number', name='pounds', ng-model='growth.pounds')
           .form-group
             label(for='ounces') ounces
-            input.form-control#ounces(type='number', name='ounces', ng-model='child.ounces')
+            input.form-control#ounces(type='number', name='ounces', ng-model='growth.ounces')
           .form-group
             label(for='head') Head Circumference
-            input.form-control#head(type='number', name='head', ng-model='child.head')
-          button.btn#update(ng-click='updateChild()') Add Growth
+            input.form-control#head(type='number', name='head', ng-model='growth.head')
+          button.btn#update(ng-click='addGrowth()') Add Growth
 
 .row
   .col-xs-12
-    .panel.panel-default(ng-hide='hidePanel')
+    .panel.panel-default
       .panel-body
         h5 Growth Chart
         table.table.table-bordered.table-hover
@@ -43,12 +44,81 @@ h3 {{child.name}}
             th Length
             th Head
               tbody
-                tr
-                  td {{child.date | date:'mediumDate'}}
-                  td {{child.pounds || 0}} lbs, {{child.ounces}} oz
-                  td {{child.feet || 0}} ft, {{child.inches}} in
-                  td {{child.head}} "
+                tr(ng-repeat='g in child.growth')
+                  td {{g.date | date:'mediumDate'}}
+                  td {{g.pounds || 0}} lbs, {{g.ounces}} oz
+                  td {{g.feet || 0}} ft, {{g.inches}} in
+                  td {{g.head}} "
 
 .row
   .col-xs-3.col-xs-offset-9
-    button.btn(ng-click='toggleChild()', ng-hide='showChild') Edit Growth Chart
+    button.btn(ng-click='toggleGrowth()', ng-hide='showGrowth') Add to Growth Chart
+
+.row
+  .col-xs-6
+    form(novalidate, name='milestoneForm', role='form', ng-show='showMilestone')
+      .row
+        .col-xs-6
+          h4 Milestones
+          .form-group
+            label(for='mdate') Date
+            input.form-control#mdate(type='date', name='mdate', ng-model='milestone.mdate', autofocus)
+          .form-group
+            label(for='milestone') Milestone
+            input.form-control#milestone(type='text', name='milestone', ng-model='milestone.name')
+          button.btn#update(ng-click='addMilestone()') Add Milestone
+
+.row
+  .col-xs-12
+    .panel.panel-default
+      .panel-body
+        h5 Milestones
+        table.table.table-bordered.table-hover
+          thead
+            th Date
+            th Milestone
+              tbody
+                tr(ng-repeat='m in child.milestones')
+                  td {{m.mdate | date:'mediumDate'}}
+                  td {{m.name}}
+
+.row
+  .col-xs-3.col-xs-offset-9
+    button.btn(ng-click='toggleMilestone()', ng-hide='showMilestone') Add a milestone
+
+.row
+  .col-xs-6
+    form(novalidate, name='apptsForm', role='form', ng-show='showAppts')
+      .row
+        .col-xs-6
+          h4 Doctor Appointments
+          .form-group
+            label(for='adate') Date
+            input.form-control#adate(name='adate', type='date', ng-model='appt.adate', autofocus)
+          .form-group
+            label(for='time') Time
+            input.form-control#time(name='time', type='time', ng-model='appt.time', autofocus)
+          .form-group
+            label(for='drname') Doctor
+            input.form-control#drname(type='text', name='drname', ng-model='appt.drname')
+          button.btn#update(ng-click='addAppt()') Add Appts
+
+.row
+  .col-xs-12
+    .panel.panel-default(ng-hide='hidePanel')
+      .panel-body
+        h5 Doctor Appointments
+        table.table.table-bordered.table-hover
+          thead
+            th Date
+            th Time
+            th Doctor
+              tbody
+                tr(ng-repeat='a in child.appts')
+                  td {{a.adate | date:'mediumDate'}}
+                  td {{a.time | date:'shortTime'}}
+                  td {{a.drname}}
+
+.row
+  .col-xs-3.col-xs-offset-9
+    button.btn(ng-click='toggleAppts()', ng-hide='showAppts') Add appt
