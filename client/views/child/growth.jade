@@ -1,34 +1,41 @@
 #growth.modal.fade(tabindex='-1', role='dialog', aria-labelledby='growthLabel', aria-hidden='true')
-  form.form-inline(novalidate, name='growthForm', role='form', ng-show='showGrowth')
-    .modal-dialog
-      .modal-content
-      .modal-header
-        button.close(type='button', data-dismiss='modal', aria-hidden='true') cancel x
-        h4.modal-title Add a Growth
-      .modal-body
-        .form-group
-          label(for='date') Date
-          input.form-control#date(name='date', type='date', ng-model='growth.date', autofocus)
-        .form-group
-          label Height
-          br
-        .form-group
-          label(for='feet') Feet
-          input.form-control#feet(name='feet', type='number', ng-model='growth.feet', autofocus)
-        .form-group
-          label(for='inches') Inches
-          input.form-control#inches(name='inches', type='number', ng-model='growth.inches', autofocus)
-        .form-group
-          label Weight
-          br
-        .form-group
-          label(for='pounds') lbs
-          input.form-control#pounds(type='number', name='pounds', ng-model='growth.pounds')
-        .form-group
-          label(for='ounces') ounces
-          input.form-control#ounces(type='number', name='ounces', ng-model='growth.ounces')
-        .form-group
-          label(for='head') Head Circumference
-          input.form-control#head(type='number', name='head', ng-model='growth.head')
-        .modal-footer
-          button.btn#growth(ng-click='addGrowth()', data-dismiss='modal') Add Growth
+  .row
+    .col-xs-4
+    .col-xs-4
+      form.form(novalidate, name='growthForm', role='form', ng-show='showGrowth')
+        .modal-dialog
+          .modal-content
+          .modal-header
+            button.close(type='button', data-dismiss='modal', aria-hidden='true') cancel x
+            h4.modal-title Add a Growth
+          .modal-body
+            .form-group
+              #date.label(for='date') Date
+              input.form-control#date(name='date', type='date', ng-model='growth.date', autofocus)
+            .form-group
+              label Height
+              br
+            .form-inline
+              .form-group
+                #feet.label(for='feet') Feet
+                input.form-control#feet(name='feet', type='number', ng-model='growth.feet', autofocus)
+              .form-group
+                #inches.label(for='inches') Inches
+                input.form-control#inches(name='inches', type='number', ng-model='growth.inches', autofocus)
+            .form-group
+              br
+              label Weight
+            .form-inline
+              .form-group
+                #pounds.label(for='pounds') Pounds
+                input.form-control#pounds(type='number', name='pounds', ng-model='growth.pounds')
+              .form-group
+                #ounces.label(for='ounces') ounces
+                input.form-control#ounces(type='number', name='ounces', ng-model='growth.ounces')
+            .form-group
+              br
+              #head.label(for='head') Head Circumference
+              input.form-control#head(type='number', name='head', ng-model='growth.head')
+            .modal-footer
+              button.btn#growth(ng-click='addGrowth()', data-dismiss='modal') Add Growth
+    .col-xs-4

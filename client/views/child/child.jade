@@ -24,20 +24,6 @@ h3 {{child.name}}
     include growth
 
 .row
-  .col-xs-6
-    form(novalidate, name='milestoneForm', role='form', ng-show='showMilestone')
-      .row
-        .col-xs-6
-          h4 Milestones
-          .form-group
-            label(for='mdate') Date
-            input.form-control#mdate(type='date', name='mdate', ng-model='milestone.mdate', autofocus)
-          .form-group
-            label(for='milestone') Milestone
-            input.form-control#milestone(type='text', name='milestone', ng-model='milestone.name')
-          button.btn#update(ng-click='addMilestone()') Add Milestone
-
-.row
   .col-xs-12
     .panel.panel-default
       .panel-body
@@ -53,24 +39,8 @@ h3 {{child.name}}
 
 .row
   .col-xs-3.col-xs-offset-9
-    button.btn(ng-click='toggleMilestone()', ng-hide='showMilestone') Add a milestone
-
-.row
-  .col-xs-6
-    form(novalidate, name='apptsForm', role='form', ng-show='showAppts')
-      .row
-        .col-xs-6
-          h4 Doctor Appointments
-          .form-group
-            label(for='adate') Date
-            input.form-control#adate(name='adate', type='date', ng-model='appt.adate', autofocus)
-          .form-group
-            label(for='time') Time
-            input.form-control#time(name='time', type='time', ng-model='appt.time', autofocus)
-          .form-group
-            label(for='drname') Doctor
-            input.form-control#drname(type='text', name='drname', ng-model='appt.drname')
-          button.btn#update(ng-click='addAppt()') Add Appts
+    button.btn(ng-click='toggleMilestone()', data-toggle='modal', data-target='#milestone') Add a Milestone
+    include milestone
 
 .row
   .col-xs-12
@@ -90,4 +60,5 @@ h3 {{child.name}}
 
 .row
   .col-xs-3.col-xs-offset-9
-    button.btn(ng-click='toggleAppts()', ng-hide='showAppts') Add appt
+    button.btn(ng-click='toggleAppts()', data-toggle='modal', data-target='#appt') Add appt
+    include appt
