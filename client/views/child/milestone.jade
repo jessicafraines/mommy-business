@@ -1,19 +1,21 @@
 #milestone.modal.fade(tabindex='-1', role='dialog', aria-labelledby='milestoneLabel', aria-hidden='true')
-  form(novalidate, name='milestoneForm', role='form', ng-show='showMilestone')
-    .modal-dialog
-      .modal-content
-      .modal-header
-        button.close(type='button', data-dismiss='modal', aria-hidden='true') x
-        h4.modal-title Add a Milestone
-      .modal-body
-      .row
-        .col-xs-6
-          h4 Milestones
-          .form-group
-            label(for='mdate') Date
-            input.form-control#mdate(type='date', name='mdate', ng-model='milestone.mdate', autofocus)
-          .form-group
-            label(for='milestone') Milestone
-            input.form-control#milestone(type='text', name='milestone', ng-model='milestone.name')
-        .modal-footer
-          button.btn#update(ng-click='addMilestone()', data-dismiss='modal') Add Milestone
+  .row
+    .col-xs-4
+    .col-xs-4
+      form(novalidate, name='milestoneForm', role='form', ng-show='showMilestone')
+        .modal-dialog
+          .modal-content
+          .modal-header
+            button.close(type='button', data-dismiss='modal', aria-hidden='true') cancel x
+            h4.modal-title Add a Milestone
+          .modal-body
+            h4 Milestones
+            .form-group
+              .mdate.label(for='mdate') Date
+              input.form-control#mdate(type='date', name='mdate', ng-model='milestone.mdate', autofocus)
+            .form-group
+              .milestone.label(for='milestone') Milestone
+              input.form-control#milestone(type='text', name='milestone', ng-model='milestone.name')
+            .modal-footer
+              button.btn#update(ng-click='addMilestone()', data-dismiss='modal') Add Milestone
+    .col-xs-4
