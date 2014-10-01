@@ -10,7 +10,7 @@ h3 {{child.name}}
             th Date
             th Weight
             th Length
-            th Head
+            th Head Circumference
               tbody
                 tr(ng-repeat='g in child.growth')
                   td {{g.date | date:'mediumDate'}}
@@ -19,8 +19,8 @@ h3 {{child.name}}
                   td {{g.head}} "
 
 .row
-  .col-xs-3.col-xs-offset-9
-    button.btn(ng-click='toggleGrowth()', data-toggle='modal', data-target='#growth') Add to Growth Chart
+  .col-xs-3
+    button.btn.child(ng-click='toggleGrowth()', data-toggle='modal', data-target='#growth') Add to Growth Chart
     include growth
 
 .row
@@ -38,13 +38,13 @@ h3 {{child.name}}
                   td {{m.name}}
 
 .row
-  .col-xs-3.col-xs-offset-9
-    button.btn(ng-click='toggleMilestone()', data-toggle='modal', data-target='#milestone') Add a Milestone
+  .col-xs-3.col
+    button.btn.child(ng-click='toggleMilestone()', data-toggle='modal', data-target='#milestone') Add a Milestone
     include milestone
 
 .row
   .col-xs-12
-    .panel.panel-default(ng-hide='hidePanel')
+    .panel.panel-default
       .panel-body
         h5 Doctor Appointments
         table.table.table-bordered.table-hover
@@ -54,11 +54,11 @@ h3 {{child.name}}
             th Doctor
               tbody
                 tr(ng-repeat='a in child.appts')
-                  td {{a.adate | date:'mediumDate'}}
+                  td: a(href='/#/child/{{c._id}}') {{a.adate | date:'mediumDate'}}
                   td {{a.time | date:'shortTime'}}
                   td {{a.drname}}
 
 .row
-  .col-xs-3.col-xs-offset-9
+  .col-xs-3.col
     button.btn(ng-click='toggleAppts()', data-toggle='modal', data-target='#appt') Add appt
     include appt

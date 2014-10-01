@@ -1,6 +1,8 @@
 'use strict';
 
 var Mongo  = require('mongodb'),
+    fs     = require('fs'),
+    path   = require('path'),
     _      = require('underscore');
 
 function Child(mommyId,o){
@@ -50,23 +52,20 @@ Child.findById = function(id, cb){
   });
 };
 
-/*Child.prototype.save = function(fields, cb){
-  var properties = Object.keys(fields),
-    self       = this;
+// HELPER FUNCTIONS
 
-  properties.forEach(function(property){
-    switch(property){
-      case 'date':
-        self.date = new Date(fields[property]);
-        break;
-      default:
-        self[property] = fields[property];
-    }
-  });
+Child.prototype.stashPhoto = function(file){
 
-  this._id      = Mongo.ObjectID(this._id);
-  this.mommyId  = Mongo.ObjectID(this.mommyId);
-  Child.collection.save(this, cb);
-};*/
+  if(!file.size){return;}
+
+  var stashDir  = __dirname + '/../public/img/',
+      ext       = path.extname(file.path),
+      name      = this._id + ext,
+      stashPath = stashDir + name;
+
+  fs.renameSync(file.path, stashPath);
+  return stashPath;
+};
+
 module.exports = Child;
 

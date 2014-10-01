@@ -25,12 +25,12 @@
       button.btn.btn-primary(ng-show='addChildForm.$valid', ng-click='add()') add child
   .col-xs-9
 .row
-  .col-xs-3.col-xs-offset-9
-    button.btn(ng-click='toggleAdd()', ng-hide='showChild') Add Child
+  .col-xs-3
+    #children.button.btn(ng-click='toggleAdd()', ng-hide='showChild') Add Child
 .row
   .col-xs-12
-    .panel.panel-default(ng-hide='hidePanel')
-      .panel-body
+    #childrenTable.panel.panel-default
+      #test.panel-body
         table.table.table-bordered.table-hover
           thead
             th Child's Name
