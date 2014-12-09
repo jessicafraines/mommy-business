@@ -1,0 +1,24 @@
+#editAppt.modal.fade(tabindex='-1', role='dialog', aria-labelledby='editApptLabel', aria-hidden='true')
+  .row
+    .col-xs-4
+    .col-xs-4
+      form(novalidate, name='editApptsForm', role='form', ng-show='showAppts')
+        .modal-dialog
+          .modal-content
+          .modal-header
+            button.close(type='button', data-dismiss='modal', aria-hidden='true') cancel x
+            h4.modal-title Edit
+          .modal-body
+            h4 Appointments
+            .form-group
+              .adate.label(for='adate') Date
+              input.form-control#adate(name='adate', type='date', ng-model='appt.adate', autofocus)
+            .form-group
+              .time.label(for='time') Time
+              input.form-control#time(name='time', type='time', ng-model='appt.time', value='{{appt.time}}')
+            .form-group
+              .drname.label(for='drname') Doctor
+              input.form-control#drname(type='text', name='drname', ng-model='appt.drname', value='{{child.appt.drname}}')
+            .modal-footer
+              button.btn#update(ng-click='editAppt()', data-dismiss='modal') Save Changes
+    .col-xs-4

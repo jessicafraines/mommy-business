@@ -52,13 +52,18 @@ h3 {{child.name}}
             th Date
             th Time
             th Doctor
+            th Edit
+            th Delete
               tbody
                 tr(ng-repeat='a in child.appts')
-                  td: a(href='/#/child/{{c._id}}') {{a.adate | date:'mediumDate'}}
+                  td: a(href='/#/appt') {{a.adate | date:'mediumDate'}}
                   td {{a.time | date:'shortTime'}}
                   td {{a.drname}}
-
+                  td: button.btn(ng-click='toggleAppts()', data-toggle='modal', data-target='#editAppt') Edit Appt
+                  td: button.btn(ng-click='toggleAppts()', data-toggle='modal', data-target='#deleteAppt') Delete Appt
+                  include editAppt
 .row
   .col-xs-3.col
     button.btn(ng-click='toggleAppts()', data-toggle='modal', data-target='#appt') Add appt
     include appt
+

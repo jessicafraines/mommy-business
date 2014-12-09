@@ -5,7 +5,8 @@ var Mongo  = require('mongodb'),
     path   = require('path'),
     _      = require('underscore');
 
-function Child(mommyId,o){
+function Child(mommyId, o, files){
+  this._id        = new Mongo.ObjectID();
   this.mommyId    = Mongo.ObjectID(mommyId);
   this.name       = o.name;
   this.dob        = (o.dob) ? (new Date(o.dob)) : '';
@@ -16,20 +17,20 @@ function Child(mommyId,o){
   this.growth     = [];
   this.milestones = [];
   this.appts      = [];
+  this.photo      = stashPhoto(files, this._id);
 }
 
 Object.defineProperty(Child, 'collection',{
   get: function(){return global.mongodb.collection('children');}
 });
 
-Child.create = function(user, o, cb){
-  var c = new Child(user, o);
+Child.create = function(fields, files, cb){
+  var c = new Child(fields, files);
   Child.collection.save(c, cb);
 };
 
 Child.update = function(child, cb){
   child._id = Mongo.ObjectID(child._id);
-  console.log('CHILD', child);
   child.mommyId = Mongo.ObjectID(child.mommyId);
   child.dob = (child.dob) ? (new Date(child.dob)) : '';
   Child.collection.save(child, cb);
@@ -52,20 +53,42 @@ Child.findById = function(id, cb){
   });
 };
 
+Child.prototype.save = function(fields, file, cb){
+  var properties = Object.keys(fields),
+      self       = this;
+  properties.firEach(function(property){
+    switch(property){
+      case 'photo':
+        self.photo = stashPhoto(file, self._id);
+        break;
+      default:
+        self[property] = fields[property];
+    }
+  });
+  this._id      = Mongo.ObjectID(this._id);
+  this.mommyId  = Mongo.ObjectID(this.mommyId);
+  this.dob     = (this.dob) ? (new Date(this.dob)) : '';
+  Child.collection.save(this, cb);
+};
 // HELPER FUNCTIONS
 
-Child.prototype.stashPhoto = function(file){
+function stashPhoto(files, childId){
+  if(files.file){
+    var tempPath  = files.file[0].path,
+      relDir      = '/img/',
+                  absDir      = __dirname + '/../public' + relDir,
+                  ext         = path.extname(tempPath),
+                  name        = childId + ext,
+                  absPath     = absDir + name,
+                  relPath     = relDir + name;
 
-  if(!file.size){return;}
+    fs.renameSync(tempPath, absPath);
+    return relPath;
+  } else{
+    return ('');
+  }
+}
 
-  var stashDir  = __dirname + '/../public/img/',
-      ext       = path.extname(file.path),
-      name      = this._id + ext,
-      stashPath = stashDir + name;
-
-  fs.renameSync(file.path, stashPath);
-  return stashPath;
-};
 
 module.exports = Child;
 

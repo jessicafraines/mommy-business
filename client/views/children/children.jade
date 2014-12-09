@@ -1,47 +1,48 @@
+div(style='background-image: url(/img/giftly.png)')
 .row
-  .col-xs-3
-    form(role='form', novalidate, name='addChildForm', ng-show='showChild')
-      .form-group
-        label(for='name') Baby's Name
-        input.form-control#name(type='text', name='name', ng-model='child.name', autofocus, required)
-      .form-group
-        label(for='dob') Date of Birth
-        input.form-control#dob(type='date', name='dob', ng-model='child.dob')
-      .form-group
-        label(for='tob') Time of Birth
-        input.form-control#tob(type='time', name='tob', ng-model='child.tob')
-      .form-group
-        label Weight at Birth
-        br
-      .form-group
-        label(for='pab') lbs
-        input.form-control#pab(type='number', name='pab', ng-model='child.pab')
-      .form-group
-        label(for='oab') ounces
-        input.form-control#oab(type='number', name='oab', ng-model='child.oab')
-      .form-group
-        label(for='lab') Length at Birth
-        input.form-control#lab(type='number', name='lab', ng-model='child.lab')
-      button.btn.btn-primary(ng-show='addChildForm.$valid', ng-click='add()') add child
-  .col-xs-9
-.row
-  .col-xs-3
-    #children.button.btn(ng-click='toggleAdd()', ng-hide='showChild') Add Child
-.row
-  .col-xs-12
-    #childrenTable.panel.panel-default
-      #test.panel-body
-        table.table.table-bordered.table-hover
-          thead
-            th Child's Name
-            th Date of Birth
-            th Time of Birth
-            th Weight at Birth
-            th Length at Birth
-              tbody
-                tr(ng-repeat='c in children')
-                  td: a(href='/#/child/{{c._id}}') {{c.name}}
-                  td {{c.dob | date:'mediumDate'}}
-                  td {{c.tob | date:'shortTime'}}
-                  td {{c.pab}} lbs, {{c.oab}} oz
-                  td {{c.lab}} inches
+    .col-xs-3
+      form(role='form', novalidate, name='addChildForm', ng-show='showChild')
+        .form-group
+          label(for='name') Baby's Name
+          input.form-control#name(type='text', name='name', ng-model='child.name', autofocus, required)
+        .form-group
+          label(for='dob') Date of Birth
+          input.form-control#dob(type='date', name='dob', ng-model='child.dob')
+        .form-group
+          label(for='tob') Time of Birth
+          input.form-control#tob(type='time', name='tob', ng-model='child.tob')
+        .form-group
+          label Weight at Birth
+          br
+        .form-group
+          label(for='pab') lbs
+          input.form-control#pab(type='number', name='pab', ng-model='child.pab')
+        .form-group
+          label(for='oab') ounces
+          input.form-control#oab(type='number', name='oab', ng-model='child.oab')
+        .form-group
+          label(for='lab') Length at Birth
+          input.form-control#lab(type='number', name='lab', ng-model='child.lab')
+        button.btn.btn-primary(ng-show='addChildForm.$valid', ng-click='add()') add child
+    .col-xs-9
+  .row
+    .col-xs-3
+      #children.button.btn(ng-click='toggleAdd()', ng-hide='showChild') Add Child
+  .row
+    .col-xs-12
+      #childrenTable.panel.panel-default
+        #test.panel-body
+          table.table.table-bordered.table-hover
+            thead
+              th Child's Name
+              th Date of Birth
+              th Time of Birth
+              th Weight at Birth
+              th Length at Birth
+                tbody
+                  tr(ng-repeat='c in children')
+                    td: a(href='/#/child/{{c._id}}') {{c.name}}
+                    td {{c.dob | date:'mediumDate'}}
+                    td {{c.tob | date:'shortTime'}}
+                    td {{c.pab}} lbs, {{c.oab}} oz
+                    td {{c.lab}} inches
